@@ -650,11 +650,24 @@ function initTelegram() {
   if (!tg) return;
   try { tg.ready(); } catch (e) {}
   try { tg.expand(); } catch (e) {}
+  try { if (tg.requestFullscreen) tg.requestFullscreen(); } catch (e) {}
+  try { if (tg.disableVerticalSwipes) tg.disableVerticalSwipes(); } catch (e) { try { tg.isVerticalSwipesEnabled = false; } catch (e2) {} }
   try { tg.setHeaderColor('#0A0C0E'); } catch (e) {}
   try { tg.setBackgroundColor('#0A0C0E'); } catch (e) {}
-  const updateVH = () => { document.documentElement.style.setProperty('--tg-vh', (tg.viewportStableHeight || window.innerHeight) + 'px'); };
+  try { tg.setBottomBarColor && tg.setBottomBarColor('#0A0C0E'); } catch (e) {}
+  const updateVH = () => { document.documentElement.style.setProperty('--tg-vh', (tg.viewportStableHeight || tg.viewportHeight || window.innerHeight) + 'px'); };
+  const updateSafeArea = () => {
+    const sa = tg.safeAreaInset || {};
+    const csa = tg.contentSafeAreaInset || {};
+    document.documentElement.style.setProperty('--tg-safe-top', ((sa.top || 0) + (csa.top || 0)) + 'px');
+    document.documentElement.style.setProperty('--tg-safe-bottom', ((sa.bottom || 0) + (csa.bottom || 0)) + 'px');
+  };
   updateVH();
+  updateSafeArea();
   try { tg.onEvent('viewportChanged', updateVH); } catch (e) {}
+  try { tg.onEvent('fullscreenChanged', () => { updateVH(); updateSafeArea(); }); } catch (e) {}
+  try { tg.onEvent('safeAreaChanged', updateSafeArea); } catch (e) {}
+  try { tg.onEvent('contentSafeAreaChanged', updateSafeArea); } catch (e) {}
   try { tg.BackButton.onClick(() => history.back()); } catch (e) {}
 }
 
@@ -685,9 +698,9 @@ function playSplash(done) {
     setTimeout(() => { root.innerHTML = ''; done(); }, 380);
   };
   setTimeout(() => { stage.classList.add('drive'); }, 200);
-  setTimeout(() => { logo.classList.add('show'); }, 1500);
+  setTimeout(() => { logo.classList.add('show'); }, 1725);
   splashEl.addEventListener('click', finish, { once: true });
-  autoTimer = setTimeout(finish, 3400);
+  autoTimer = setTimeout(finish, 3625);
 }
 
 // ---------- boot ----------
