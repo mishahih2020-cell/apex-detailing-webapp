@@ -658,6 +658,38 @@ function initTelegram() {
   try { tg.BackButton.onClick(() => history.back()); } catch (e) {}
 }
 
+// ---------- splash intro ----------
+function playSplash(done) {
+  const root = document.getElementById('splash-root');
+  root.innerHTML = `
+    <div id="splash">
+      <div class="splash-stage" id="splash-stage">
+        <div class="splash-shadow"></div>
+        <img class="splash-car" src="img/car-hero.png" alt="">
+      </div>
+      <div class="splash-logo" id="splash-logo">
+        <div class="splash-word">APE<span>X</span></div>
+        <div class="splash-tag">Detailing Studio</div>
+      </div>
+    </div>`;
+  const splashEl = document.getElementById('splash');
+  const stage = document.getElementById('splash-stage');
+  const logo = document.getElementById('splash-logo');
+  let finished = false;
+  let autoTimer = null;
+  const finish = () => {
+    if (finished) return;
+    finished = true;
+    clearTimeout(autoTimer);
+    splashEl.classList.add('out');
+    setTimeout(() => { root.innerHTML = ''; done(); }, 380);
+  };
+  setTimeout(() => { stage.classList.add('drive'); }, 200);
+  setTimeout(() => { logo.classList.add('show'); }, 1500);
+  splashEl.addEventListener('click', finish, { once: true });
+  autoTimer = setTimeout(finish, 3400);
+}
+
 // ---------- boot ----------
 function boot() {
   initTelegram();
@@ -665,6 +697,6 @@ function boot() {
   document.body.addEventListener('input', onBodyInput);
   window.addEventListener('hashchange', render);
   if (!location.hash || location.hash === '#') location.hash = '/home';
-  render();
+  playSplash(render);
 }
 document.addEventListener('DOMContentLoaded', boot);
