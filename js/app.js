@@ -698,9 +698,9 @@ function playSplash(done) {
     setTimeout(() => { root.innerHTML = ''; done(); }, 380);
   };
   setTimeout(() => { stage.classList.add('drive'); }, 200);
-  setTimeout(() => { logo.classList.add('show'); }, 1725);
+  setTimeout(() => { logo.classList.add('show'); }, 2725);
   splashEl.addEventListener('click', finish, { once: true });
-  autoTimer = setTimeout(finish, 3625);
+  autoTimer = setTimeout(finish, 4625);
 }
 
 // ---------- boot ----------

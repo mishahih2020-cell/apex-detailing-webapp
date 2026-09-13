@@ -353,7 +353,7 @@ label.lbl{font-size:12px;color:var(--t1);font-weight:600;display:block;margin-bo
 .splash-stage{position:relative;z-index:1;width:100%;display:flex;align-items:center;justify-content:center;will-change:transform,filter;}
 .splash-car{position:relative;width:76vw;max-width:340px;display:block;filter:drop-shadow(0 20px 22px rgba(0,0,0,.55));}
 .splash-shadow{position:absolute;left:50%;bottom:6%;width:58%;height:14px;background:radial-gradient(ellipse, rgba(0,0,0,.55), transparent 72%);transform:translateX(-50%);}
-.splash-stage.drive{animation:splashDrive 1.725s cubic-bezier(.6,.04,.9,.32) forwards;}
+.splash-stage.drive{animation:splashDrive 2.725s cubic-bezier(.6,.04,.9,.32) forwards;}
 @keyframes splashDrive{
   0%{transform:translateX(0); filter:blur(0px);}
   50%{transform:translateX(6vw); filter:blur(.3px);}
