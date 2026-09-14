@@ -81,7 +81,7 @@ function render() {
   document.getElementById('app').innerHTML = html + (isTab ? renderBottomNav(route) : '');
   syncBackButton(route);
   const scrollEl = document.querySelector('.scroll');
-  if (scrollEl) scrollEl.scrollTop = 0; else window.scrollTo(0, 0);
+  if (scrollEl) { scrollEl.scrollTop = 0; scrollEl.style.paddingBottom = isTab ? 'calc(90px + var(--safe-b))' : ''; } else window.scrollTo(0, 0);
   if (route === 'tracking' && param) startTrackingTimer(param);
 }
 
@@ -106,12 +106,6 @@ function emptyState(iconName, title, sub, ctaLabel, ctaNav) {
 function screenHome() {
   const car = findCar(S, S.primaryCarId) || S.cars[0];
   const activeOrder = S.orders.find(o => o.status === 'active');
-  const svc4 = SERVICES.slice(0, 4);
-  const svcCards = svc4.map(s => `
-    <button class="scard" data-nav="service/${s.id}">
-      <div class="ic">${icon(s.icon, 17, 'var(--lime)', 1.7)}</div>
-      <b>${s.name}</b><span>от ${fmtPrice(s.price.sedan)}</span>
-    </button>`).join('');
   return `
   <div class="hdr">
     <div class="hdr-left"><div class="wordmark-wrap"><div class="wordmark">BLES<span class="a">K</span></div><div class="wordmark-sub">Detailing Studio</div></div></div>
@@ -145,8 +139,6 @@ function screenHome() {
         <b>${S.user.points.toLocaleString('ru-RU')}</b><span>баллов</span>
       </button>
     </div>
-    <div class="sec"><div class="section-title">Популярные услуги<b data-nav="services">Все услуги</b></div></div>
-    <div class="srow">${svcCards}</div>
     <div class="trust">
       <div class="trow"><div class="ic">${icon('shield', 16, '#F2F5F7', 1.6)}</div><div><b>Гарантия до 24 месяцев</b><span>на керамику и защитные плёнки</span></div></div>
       <div class="trow"><div class="ic">${icon('star', 16, '#F2F5F7', 1.6)}</div><div><b>Только оригинальные материалы</b><span>3M, Ceramic Pro, Koch Chemie</span></div></div>
