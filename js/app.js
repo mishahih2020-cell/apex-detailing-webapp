@@ -1,4 +1,4 @@
-// APEX Detailing — SPA: роутинг, экраны, обработчики, интеграция с Telegram WebApp SDK
+// BLESK Detailing — SPA: роутинг, экраны, обработчики, интеграция с Telegram WebApp SDK
 
 const TAB_ROUTES = ['home', 'services', 'garage', 'history', 'profile'];
 const DOW = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
@@ -114,7 +114,7 @@ function screenHome() {
     </button>`).join('');
   return `
   <div class="hdr">
-    <div class="hdr-left"><div class="wordmark">APE<span class="a">X</span></div></div>
+    <div class="hdr-left"><div class="wordmark-wrap"><div class="wordmark">BLES<span class="a">K</span></div><div class="wordmark-sub">Detailing Studio</div></div></div>
     <button class="icon-btn" data-nav="profile">${icon('bell', 19, '#F2F5F7')}<span class="dotalert"></span></button>
   </div>
   <div class="scroll">
@@ -304,7 +304,7 @@ function screenCart() {
     <div class="section-title">Услуги</div>
     ${itemsHtml}
     <div class="promo">
-      <input id="promo-input" placeholder="Промокод (APEX10)" value="${draft.promo ? draft.promo.code : ''}">
+      <input id="promo-input" placeholder="Промокод (BLESK10)" value="${draft.promo ? draft.promo.code : ''}">
       <button data-act="apply-promo">Применить</button>
     </div>
     ${ui.promoError ? `<div style="color:var(--red);font-size:11.5px;margin:-12px 0 16px;">Промокод не найден</div>` : ''}
@@ -547,7 +547,7 @@ function removeItem(idx) {
 }
 function applyPromo() {
   const val = (document.getElementById('promo-input').value || '').trim().toUpperCase();
-  if (val === 'APEX10') { S.draft.promo = { code: 'APEX10', pct: 10 }; ui.promoError = false; toast('Промокод применён', '−10% к заказу'); }
+  if (val === 'BLESK10') { S.draft.promo = { code: 'BLESK10', pct: 10 }; ui.promoError = false; toast('Промокод применён', '−10% к заказу'); }
   else { S.draft.promo = null; ui.promoError = !!val; }
   saveState(S);
   render();
@@ -686,7 +686,7 @@ function playSplash(done) {
         <img class="splash-car" src="img/car-hero.png" alt="">
       </div>
       <div class="splash-logo" id="splash-logo">
-        <div class="splash-word">APE<span>X</span></div>
+        <div class="splash-word">BLES<span>K</span></div>
         <div class="splash-tag">Detailing Studio</div>
       </div>
     </div>`;
