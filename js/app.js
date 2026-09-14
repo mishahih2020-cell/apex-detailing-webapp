@@ -229,12 +229,17 @@ function screenGarage() {
     </button>`;
   }).join('');
   return `
-  <div class="hdr-page">
-    <div class="h1" style="display:flex;justify-content:space-between;align-items:center;">Мой гараж <button class="addbtn" data-act="open-addcar">${icon('plus', 18, 'var(--lime)', 2)}</button></div>
-  </div>
-  <div class="scroll pad">
-    ${carsHtml}
-    <button class="addcar" data-act="open-addcar">${icon('garage', 26, 'var(--t1)', 1.6)}<b>Добавить автомобиль</b><span style="font-size:11.5px;">Марка, модель, госномер и тип кузова</span></button>
+  <div class="scroll">
+    <div class="garage-hero">
+      <img class="garage-hero-car" src="img/car-hero.png" alt="">
+    </div>
+    <div class="hdr-page" style="padding-top:14px;">
+      <div class="h1" style="display:flex;justify-content:space-between;align-items:center;">Мои автомобили <button class="addbtn" data-act="open-addcar">${icon('plus', 18, 'var(--lime)', 2)}</button></div>
+    </div>
+    <div class="pad">
+      ${carsHtml}
+      <button class="addcar" data-act="open-addcar">${icon('garage', 26, 'var(--t1)', 1.6)}<b>Добавить автомобиль</b><span style="font-size:11.5px;">Марка, модель, госномер и тип кузова</span></button>
+    </div>
   </div>`;
 }
 
@@ -390,7 +395,7 @@ function screenTracking(orderId) {
   </div>
   <div class="scroll pad">
     <div class="stage">
-      ${CAR_BLUEPRINT_SVG.replace('<svg ', '<svg class="stage-blueprint" ')}
+      <img class="stage-car" src="img/car-hero.png" alt="">
       ${stageIndex > 0 ? `<div class="pin done" style="top:36%;left:26%;"></div>` : ''}
       ${!done ? `<div class="pin" style="top:60%;left:66%;"></div>` : ''}
       <div class="tag2" style="top:20%;left:8%;">${stageIndex > 0 ? 'Диски — готово' : 'Ожидание приёма'}</div>

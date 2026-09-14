@@ -104,7 +104,7 @@ function seedState() {
     cars: [
       { id: 'car1', brand: 'BMW', model: 'M5 Competition', plate: 'А 777 ЕХ 197', size: 'crossover', passport: 78, lastService: 'Керамика обновлена 12 мая 2026' },
       { id: 'car2', brand: 'Mercedes-Benz', model: 'E200', plate: 'В 112 КМ 777', size: 'sedan', passport: 45, lastService: 'Плановая мойка через 3 дня' },
-      { id: 'car3', brand: 'Lexus', model: 'LS 500', plate: 'Е 500 ЛХ 799', size: 'suv', passport: 92, lastService: 'PPF нанесена 3 февраля 2026' }
+      { id: 'car3', brand: 'BMW', model: 'M4', plate: 'М 444 ВМ 799', size: 'sedan', passport: 92, lastService: 'PPF нанесена 3 февраля 2026' }
     ],
     draft: null, // { items:[{serviceId,sizeKey,price}], carId, date, time, locationId, promo }
     orders: [
