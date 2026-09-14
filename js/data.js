@@ -121,7 +121,7 @@ function seedState() {
   };
 }
 
-const STORAGE_KEY = 'apex_detailing_state_v1';
+const STORAGE_KEY = 'blesk_detailing_state_v2';
 
 function loadState() {
   try {
