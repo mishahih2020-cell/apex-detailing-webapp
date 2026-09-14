@@ -706,8 +706,10 @@ function boot() {
   initTelegram();
   document.body.addEventListener('click', onBodyClick);
   document.body.addEventListener('input', onBodyInput);
-  window.addEventListener('hashchange', render);
   if (!location.hash || location.hash === '#') location.hash = '/home';
-  playSplash(render);
+  playSplash(() => {
+    window.addEventListener('hashchange', render);
+    render();
+  });
 }
 document.addEventListener('DOMContentLoaded', boot);
