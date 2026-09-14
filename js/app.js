@@ -220,6 +220,7 @@ function screenServiceDetail(id) {
 }
 
 function screenGarage() {
+  const primaryCar = findCar(S, S.primaryCarId) || S.cars[0];
   const carsHtml = S.cars.map(c => {
     const primary = c.id === S.primaryCarId;
     return `<button class="car ${primary ? 'primary' : ''}" data-act="select-car" data-id="${c.id}">
@@ -231,7 +232,7 @@ function screenGarage() {
   return `
   <div class="scroll">
     <div class="garage-hero">
-      <img class="garage-hero-car" src="img/car-hero.png" alt="">
+      <img class="garage-hero-car" src="${primaryCar.img || 'img/car-hero.png'}" alt="" id="garage-hero-img">
     </div>
     <div class="hdr-page" style="padding-top:14px;">
       <div class="h1" style="display:flex;justify-content:space-between;align-items:center;">Мои автомобили <button class="addbtn" data-act="open-addcar">${icon('plus', 18, 'var(--lime)', 2)}</button></div>
